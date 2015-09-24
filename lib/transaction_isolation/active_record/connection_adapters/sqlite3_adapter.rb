@@ -60,7 +60,8 @@ if defined?( ActiveRecord::ConnectionAdapters::SQLite3Adapter )
           
           # http://www.sqlite.org/c3ref/c_abort.html
           def isolation_conflict?( exception )
-            [ "The database file is locked",
+            [ "database is locked",
+              "The database file is locked",
               "A table in the database is locked",
               "Database lock protocol error"].any? do |error_message|
               exception.message =~ /#{Regexp.escape( error_message )}/i
